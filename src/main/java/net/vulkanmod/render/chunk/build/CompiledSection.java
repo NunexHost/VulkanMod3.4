@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.vulkanmod.render.vertex.TerrainBufferBuilder;
 import net.vulkanmod.render.vertex.TerrainRenderType;
 
-import java.util.BitSet;
 import org.jetbrains.annotations.Nullable;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,13 +23,13 @@ public class CompiledSection {
         }
     };
 
-    public final Set<TerrainRenderType> renderTypes = new BitSet();
+    public final BitSet renderTypes = new BitSet();
 
     boolean isCompletelyEmpty = true;
 
     final List<BlockEntity> renderableBlockEntities = Lists.newArrayList();
 
-    VisibilitySet visibilitySet = new VisibilitySet();
+    private final Map<Direction, Map<Direction, Boolean>> visibilityCache = new HashMap<>();
 
     @Nullable
     TerrainBufferBuilder.SortState transparencyState;
@@ -55,8 +55,6 @@ public class CompiledSection {
         this.visibilityCache.put(dir1, dir2, visibility);
         return visibility;
     }
-
-    private final Map<Direction, Map<Direction, Boolean>> visibilityCache = new HashMap<>();
 
     public void addRenderableLayer(TerrainRenderType renderType) {
         this.renderTypes.set(renderType.ordinal());
