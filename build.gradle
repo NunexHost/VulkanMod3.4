@@ -10,7 +10,7 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-project.ext.lwjglVersion = "3.3.2"
+project.ext.lwjglVersion = "3.3.1"
 project.ext.jomlVersion = "1.10.4"
 project.ext.winNatives = "natives-windows"
 project.ext.linuxNatives = "natives-linux"
@@ -52,7 +52,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	//modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 processResources {
